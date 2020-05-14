@@ -1,29 +1,30 @@
-print("========== 메뉴 ==========")
 
-print("PUSH : 1")
+def print_pri(m,priority):
+    index=m
+    max_num=max(priority)
+    answer=0
 
-print("POP : 2")
+    while True:
+        temp = priority.pop(0) 
+        if temp < max_num:
+            if index ==0: 
+                priority.append(temp) 
+                index = len(priority)-1 
+            else: 
+                priority.append(temp) 
+                index -= 1 
+                            
+        else:  
+            if index ==0:
+                answer += 1
+                break  
+            
+            index -= 1  
+            answer +=1  
+            max_num=max(priority)
+    return answer 
 
-print("SHOW : 3")
-
-print("(종료 하려면 1,2,3 이외의 수 입력)")
-
-stack=[]
-
-Menu=int(input("메뉴를 선택하세요 : ")) # 문자열이 아닌 다른 자료형을 입려 받게 하고싶다면 input앞에 원하는 자료형 적기 (x.input("abcd"))
-
-if Menu==1:
-
-stack.append(Menu)
-
-elif Menu==2:
-
-stack.pop()
-
-elif Menu==3:
-
-print(stack)
-
-else:
-
-print("========== 스택 프로그램을 종료합니다 ==========")
+n=int(input("작업 수 : "))
+m=int(input("작업 번호 : "))
+priority= list(map(int,input("작업 우선순위 : ").split()))
+print(print_pri(m,priority),"분")
